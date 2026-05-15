@@ -67,9 +67,11 @@ Dice randomness uses a seeded `mulberry32`-style PRNG in [`src/engine/dice.ts`](
 
 ## Screenshots
 
-![Simulator UI](docs/screenshots/01-encounter.png)
-![Combat log](docs/screenshots/02-combat-log.png)
-![Character import](docs/screenshots/03-import.png)
+![Simulator UI - character balance tester loaded with a sample fighter](docs/screenshots/01-encounter.png)
+
+![Character import - D&D Beyond import workflow](docs/screenshots/03-import.png)
+
+> A combat-log screenshot will be added with the next capture pass.
 
 ## Roadmap / Limitations
 
