@@ -1,5 +1,7 @@
 # D&D Character Balance Tester
 
+> **Status — work in progress.** Single-character imports, deterministic dice, and Monte-Carlo runs against fixed encounters work. Active work in progress: party-of-N support, smarter combat AI (target prioritization, reactions, legendary actions), spell-slot tracking, and movement/cover. The README "Roadmap / Limitations" section below lists the known gaps in detail.
+
 A local-first D&D 5e combat simulator built with TypeScript, React, and Electron. Import a character from D&D Beyond, configure an encounter against SRD monsters, and run Monte-Carlo simulations to see how the character actually performs — win rate, average damage dealt and taken, round counts, and turn-by-turn combat logs across many seeded runs.
 
 ## Why
