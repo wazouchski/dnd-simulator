@@ -1,0 +1,81 @@
+{
+  "name": "dnd-character-balance-tester",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Local-first D&D 5e character balance simulator.",
+  "main": "electron/main.cjs",
+  "scripts": {
+    "dev": "next dev --hostname 127.0.0.1 --port 3001",
+    "build": "next build",
+    "desktop": "npm run build && electron .",
+    "desktop:dist": "npm run icon && npm run build && electron-builder --win",
+    "desktop:dist:setup": "npm run icon && npm run build && electron-builder --win nsis --x64 --publish never --config.directories.output=release-current",
+    "desktop:dist:setup:from-unpacked": "electron-builder --prepackaged release/win-unpacked --win nsis --x64 --publish never --config.directories.output=release-current",
+    "desktop:dist:selfsigned": "npm run desktop:dist && powershell.exe -NoProfile -ExecutionPolicy Bypass -File scripts/sign-self-signed.ps1",
+    "desktop:dist:selfsigned:trust": "npm run desktop:dist && powershell.exe -NoProfile -ExecutionPolicy Bypass -File scripts/sign-self-signed.ps1 -TrustForCurrentUser",
+    "desktop:sign:selfsigned": "powershell.exe -NoProfile -ExecutionPolicy Bypass -File scripts/sign-self-signed.ps1",
+    "desktop:sign:trust-local": "powershell.exe -NoProfile -ExecutionPolicy Bypass -File scripts/sign-self-signed.ps1 -TrustForCurrentUser",
+    "desktop:trust:selfsigned": "powershell.exe -NoProfile -ExecutionPolicy Bypass -File scripts/trust-self-signed.ps1",
+    "icon": "node scripts/generate-icon.cjs",
+    "preview:static": "node scripts/serve-static.cjs --port 3001",
+    "quickstart:pdf": "electron scripts/generate-quickstart-pdf.cjs",
+    "typecheck": "tsc --noEmit",
+    "test": "vitest run"
+  },
+  "dependencies": {
+    "next": "^16.2.5",
+    "react": "^19.2.6",
+    "react-dom": "^19.2.6"
+  },
+  "devDependencies": {
+    "@types/node": "^25.6.0",
+    "@types/react": "^19.2.14",
+    "@types/react-dom": "^19.2.3",
+    "electron": "^42.0.0",
+    "electron-builder": "^26.8.1",
+    "typescript": "^6.0.3",
+    "vitest": "^4.1.5"
+  },
+  "build": {
+    "appId": "com.local.dnd-character-balance-tester",
+    "productName": "D&D Character Balance Tester",
+    "directories": {
+      "buildResources": "build",
+      "output": "release"
+    },
+    "afterPack": "electron/after-pack.cjs",
+    "toolsets": {
+      "winCodeSign": "1.0.0"
+    },
+    "files": [
+      "electron/**/*",
+      "package.json"
+    ],
+    "extraResources": [
+      {
+        "from": "out",
+        "to": "out"
+      },
+      {
+        "from": "build/icon.ico",
+        "to": "icon.ico"
+      }
+    ],
+    "win": {
+      "icon": "build/icon.ico",
+      "signAndEditExecutable": false,
+      "target": [
+        "nsis",
+        "portable"
+      ]
+    },
+    "nsis": {
+      "artifactName": "${productName}-${version}-${arch}-Setup.${ext}",
+      "installerIcon": "build/icon.ico",
+      "uninstallerIcon": "build/icon.ico"
+    },
+    "portable": {
+      "artifactName": "${productName}-${version}-${arch}-Portable.${ext}"
+    }
+  }
+}

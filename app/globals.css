@@ -1,0 +1,86 @@
+:root {
+  --bg: #101417;
+  --bg-soft: #1b2224;
+  --panel: rgba(34, 39, 41, 0.76);
+  --panel-strong: rgba(15, 18, 20, 0.88);
+  --stone: #384042;
+  --stone-hi: #87908a;
+  --line: rgba(224, 211, 170, 0.28);
+  --line-soft: rgba(224, 211, 170, 0.16);
+  --gold: #d8bd6a;
+  --gold-bright: #fff1b9;
+  --blood: #9c5149;
+  --blood-bright: #f08a68;
+  --emerald: #95c98c;
+  --violet: #b6b2d8;
+  --text: #f6f0dc;
+  --text-muted: #d2c8aa;
+  --text-dim: #a89f89;
+  --accent: var(--emerald);
+  --accent-strong: var(--gold-bright);
+  --accent-hot: var(--blood-bright);
+  --good: #68e68f;
+  --bad: #ff695b;
+  --info: #9ca8ff;
+  --shadow: rgba(0, 0, 0, 0.46);
+  --radius: 8px;
+  color-scheme: dark;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  min-height: 100%;
+}
+
+body {
+  margin: 0;
+  background:
+    radial-gradient(circle at 62% 8%, rgba(255, 231, 143, 0.38), transparent 20rem),
+    linear-gradient(90deg, rgba(8, 11, 14, 0.42), rgba(8, 11, 14, 0.1) 46%, rgba(8, 11, 14, 0.5)),
+    linear-gradient(180deg, rgba(10, 13, 15, 0.18), rgba(8, 11, 12, 0.84)),
+    url("/fantasy-cavern-bg.png") center top / cover fixed no-repeat,
+    #111416;
+  color: var(--text);
+  font-family: "Segoe UI", "Inter", "Trebuchet MS", Arial, sans-serif;
+  font-size: 14px;
+}
+
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  background:
+    linear-gradient(180deg, rgba(255, 241, 185, 0.08), transparent 24%),
+    radial-gradient(circle at 17% 36%, rgba(57, 91, 53, 0.22), transparent 22rem),
+    rgba(7, 10, 12, 0.24);
+}
+
+button,
+input,
+select,
+textarea {
+  font: inherit;
+}
+
+button {
+  cursor: pointer;
+}
+
+button:disabled {
+  cursor: not-allowed;
+  opacity: 0.58;
+}
+
+a {
+  color: var(--gold-bright);
+}
+
+::selection {
+  color: #16090d;
+  background: var(--gold-bright);
+}
